@@ -1,0 +1,8 @@
+.info span {
+	display: block;
+	margin: 16px 4px;
+	background-color: rgb(244, 244, 245);
+	padding: 8px;
+	color: rgb(180, 180, 180);
+	min-height: 18px;
+}
