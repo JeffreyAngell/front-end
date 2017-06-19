@@ -16,7 +16,7 @@ class App extends Component {
     };
   }
   update(repType, stateCode) {
-    fetch('http://localhost:3000/' + repType + '/' + stateCode)
+    fetch('/' + repType + '/' + stateCode)
       .then(response => {
         return response.json();
       })
