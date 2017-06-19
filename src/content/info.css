@@ -2,7 +2,10 @@
 	display: block;
 	margin: 16px 4px;
 	background-color: rgb(244, 244, 245);
-	padding: 8px;
-	color: rgb(180, 180, 180);
+	padding: 12px;
 	min-height: 18px;
+}
+
+.info.not-filled span {
+	color: rgb(180, 180, 180);
 }

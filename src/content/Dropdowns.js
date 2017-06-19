@@ -21,8 +21,8 @@ class Dropdowns extends Component {
       };
     });
     this.state = {
-      repType: 'senators',
-      stateCode: 'AL'
+      repType: undefined,
+      stateCode: undefined
     };
   }
   updateRepresentative(e) {
@@ -36,10 +36,18 @@ class Dropdowns extends Component {
     });
   }
   render() {
+    let states = this.states;
+    let repTypes = this.representativeOptions;
+    if(!this.state.repType) {
+      repTypes = [{key: 'Select Type'}].concat(repTypes);
+    }
+    if(!this.state.stateCode) {
+      states = [{key: 'Select State'}].concat(states);
+    }
     return (
-      <div className="">
-      	<Dropdown options={this.representativeOptions} updateValue={this.updateRepresentative.bind(this)}/>
-      	<Dropdown options={this.states} updateValue={this.updateState.bind(this)}/>
+      <div className="dropdowns">
+      	<Dropdown options={repTypes} updateValue={this.updateRepresentative.bind(this)}/>
+      	<Dropdown options={states} updateValue={this.updateState.bind(this)}/>
         <button onClick={this.update.bind(this)}>
         	  Submit
         	</button>
@@ -47,7 +55,15 @@ class Dropdowns extends Component {
     );
   }
   update() {
-  	this.props.onChange(this.state.repType, this.state.stateCode);
+    if(!this.state.repType || !this.state.stateCode) {
+      alert('Please select a value from the dropdown before submitting!');
+      return;
+    }
+    if(this.state.stateCode === 'DC' && this.state.repType === 'senators') {
+      alert('District of Columbia doesn\'t have senators. Please select another value');
+      return;
+    }
+    this.props.onChange(this.state.repType, this.state.stateCode);
   }
 }
 
